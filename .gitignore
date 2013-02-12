@@ -1,0 +1,13 @@
+*.pyc
+*.py_bak
+*.py~
+*.ini~
+*.txt~
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
