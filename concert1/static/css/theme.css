@@ -1,7 +1,6 @@
 
 /*
-** Theme: Edge - Bootstrap Theme
-** Author: @heyallanmoreno
+** Theme: Based on Edge - Bootstrap Theme by Allan Moreno
 */
 
 /*------------------------------------*\
@@ -11,17 +10,22 @@
 body {
   color: #27313D;
 }
+
 h1 {
-  font-family: 'Cabin', Helvetica, Arial, sans-serif;
-  /* font-family: 'Lobster', Georgia, Times, serif; */
-  font-size: 60px;
-  /* margin-top: 10px; */
-  margin-bottom: 65px;
-  text-align: left;
-  line-height: 1.25;
-  color: #E8F2FE;
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    font-size: 60px;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+    /* font-family: 'Sansita One', Helvetica, Arial, sans-serif; */
+    /* font-family: 'Lobster', Georgia, Times, serif; */
+    color: #E8F2FE;
+    text-shadow: 0 2px 1px #000;
+    /* text-shadow: 0px 0px 10px rgba(0, 0, 0, 1); */
+    line-height: 1.25;
+    text-align: left;
+    margin-bottom: 65px;
 }
+
 h2, h3, h4, h5, h6 {
   color: #1B222A;
 }
