@@ -1,5 +1,5 @@
-#INSTALLING CONCERT TALENT (A FLASK APP) ON AWS
-##Setting Up Your Flask App on AWS with Ubuntu, Nginx, uWSGI, Virtualenvwrapper, and Git Flow.
+#INSTALLING A FLASK APP ON AWS
+###with Ubuntu, Nginx, uWSGI, Virtualenvwrapper, and Git Flow.
 
 ##PREFACE
 
@@ -12,17 +12,17 @@ This tutorial will not only get you familiar with the subtlties of configuring a
 Nonetheless, I will make no claims that this tutorial is the _best_ method to get your Flask app up and running on Amazon.  It's just the method I prefer.  In the process of working through this tutorial, you'll garner the ancillary benefit of becoming vastly more comfortable with a few important components of Amazon Web Services if you are not already.
 
 The tutorial assumes:
-*You already have an AWS account, and have created an AWS Keypair and Security Group.
-*You're comfortable using the command line of your terminal or SSH client to connect to a remote server.
-*You're comfortable navigating the AWS Management Console via your browser.  
+* You already have an AWS account, and have created an AWS Keypair and Security Group.
+* You're comfortable using the command line of your terminal or SSH client to connect to a remote server.
+* You're comfortable navigating the AWS Management Console via your browser.  
 
-    In some cases, it's arguably easier to launch your app on AWS via the Command Line Interface (CLI) of your terminal, SSH client, or preferred IDE.  However, using the AWS Management Console provides some instructional benefits of its own.  Moreover, not all the AWS command line tools are open source, and, more importantly, nearly each AWS service requires a separate tool--which means installing, configuring, multiple tools and keeping them up to date, etc.  AWS is working on improving the CLI experience for developers.  You can follow the progress of that effort here...
-        
-    <http://aws.amazon.com/cli/>
+In some cases, it's arguably easier to launch your app on AWS via the Command Line Interface (CLI) of your terminal, SSH client, or preferred IDE.  However, using the AWS Management Console provides some instructional benefits of its own.  Moreover, not all the AWS command line tools are open source, and, more importantly, nearly each AWS service requires a separate tool--which means installing, configuring, multiple tools and keeping them up to date, etc.  AWS is working on improving the CLI experience for developers.  You can follow the progress of that effort here...
     
-    Eric Hammon publishes a very helpful blog with regard to using Ubuntu with AWS. He's written a very helpful post on using the command line tools, which you can find here...
-    
-    <http://alestic.com/2012/09/aws-command-line-tools>
+<http://aws.amazon.com/cli/>
+
+Eric Hammon publishes a very helpful blog with regard to using Ubuntu with AWS. He's written a very helpful post on using the command line tools, which you can find here...
+
+<http://alestic.com/2012/09/aws-command-line-tools>
     
 
 ###Why Ubuntu?
@@ -31,21 +31,28 @@ The Ubuntu EC2 instances come with Python 2.7 out of the box.  These AMIs are pr
 
 Are there caveats to using an Ubuntu instance on AWS EC2?
 
-*Yes...it's faster on Heroku. (But then you'll likely move to AWS later if you scale.  You can use a Heroku instance from the AWS Marketplace, but this will increase fees.)
-*Yes...it's faster on GAE. (But then you're heavily constrained by GAEs "rules of engagement"--i.e., your code will not be as easily deployable elsewhere.)
-*Yes...you must depend on Ubuntu to update packages.
+* Yes...it's faster on Heroku. (But then you'll likely move to AWS later if you scale.  You can use a Heroku instance from the AWS Marketplace, but this will increase fees.)
+* Yes...it's faster on GAE. (But then you're heavily constrained by GAEs "rules of engagement"--i.e., your code will not be as easily deployable elsewhere.)
+* Yes...you must depend on Ubuntu to update packages.
 
 ###Why Nginx?
 
-_Because ngnix uses a non-threaded, event-driven architecture, nginx is able to outperform web servers like Apache. This is particularly true in deployments that receive heavy loads given similar resource allotments._
+Because Nginx has some performance benefits over Apache that might be useful if your Flask app suddenly gets a lot of traction.  Moreover, it's paired rather easily with uWSGI when deployed as a proxy server, which we'll sum up what a proxy server is something like this: 
 
-_When nginx is used as a front-end proxy server, the process for each request follows the following process: nginx receives a request for a resource, sends a second "proxied" request to a specified server, and returns the result of that request to the original requester. This is useful when the demands of serving a single website outgrow the needs of a single machine or website. Using nginx as a front-end proxy to pass only essential requests to an application server is a viable means of unifying dynamic content with static content and providing a stable production environment._
+1. Nginx receives a request from the end-user for a page on your website
++ Nginx sends a second "proxied" request to a specified server (in this case, the uWSGI application server--i.e., the "middleware"--that sits between your app and Nginx).
++ Nginx returns the result of that request back to the end-user.
+
+So...we each time an end-user tries to dial up a page on your website, that request goes up a path from the client (i.e., the browser--Firefox, Chrome, IE, or whatever), to the proxy server (Nginx), to the application server (uWSGI), to the app (which has its own routing of requests to templates to deal with--since we're using a Flask app, then that routing happens via Werkzeug)...and all way back down from the application server, to the proxy server, to the client, where it is ultimately interprested by the end-user's eyeballs.  
+
+That's demanding a lot from all the individual components.  Using Nginx as a front-end proxy to pass only essential requests to an application server is a smart way to provide a more stable experience for the end-user.  In this way, it functions like a fuse in an electrical current.  It helps keep the application server from getting overloaded with too many requests.
+
 
 ###Why uWSGI?
 
-_The uWSGI server provides a non-FastCGI method for deploying Python applications with the nginx web server. In coordination with nginx, uWSGI offers great stability, flexibility, and performance._
+There are other application servers for Python apps.  A lot of these rely on something called Fast-CGI.  But Nginx plus uWSGI is a sort of force multiplier.  The two together allow for great stability and speed.
 
-_WSGI is "middleware".  uWSGI is essentially, then, an application container, and serves as the protocol for the conversation that the web-server and app have with one another, managing requests from the client-side to the server, and responses from the server-side back to the client._
+uWSGI is "middleware", and helps to optimize the means by which the web-server and app talk to  one another.
 
 ###Why VirtualEnvWrapper?
 
@@ -63,13 +70,29 @@ Git-Flow is just a term to describe high-level repository operations for Vincent
 
 ##OVERVIEW
  
-TODO: Say what you're going to say, say it, say what you said.
+ * Selecting the Right EC2 Instance
+ * Setting Up the Domain
+ * Getting Ready to Scale
+ * Configuring Your EC2 Instance
+ * Update Your Instance / Install Dependencies
+ * Install Nginx and uWSGI
+ * Create Your App's Directory Tree
+ * Prep for the Virtual Environment and Install Flask
+ * Configure Your Virtual Environment
+ * Launch the Virtual Environment
+ * Create a Script to Serve Your App
+ * Create a Module to Hold Your App
+ * Create an Nginx Group, a uWSGI User, and Set Permissions
+ * Configure Nginx
+ * Configure uWSGI
+ * Start the App!
+ 
+ * Additional Tricks That Might Help
+ * Acknowledgements
 
 ------------------------------------------------------------------------
 
-##GETTING STARTED
-
-###Selecting The Right EC2 Instance
+###Selecting the Right EC2 Instance
 
 Use _Ubuntu Server 12.04.1 LTS ami-3d4ff254_
 
@@ -250,7 +273,7 @@ Give uWSGI read permission to read the contents of scripts, and write permission
     sudo chown -R uwsgi:nginx /var/www/concert1
     sudo chmod -R g+w /var/www/concert1
 
-###Configure Nginx...
+###Configure Nginx
 
     cd /etc/nginx
     
@@ -325,7 +348,7 @@ Once you've completed your update of this configuration file, enable your websit
 
     sudo ln -s /etc/nginx/sites-available/concert1 /etc/nginx/sites-enabled/concert1
 
-###Configure uWSGI...
+###Configure uWSGI
 
 uWSGI necessarily makes fewer assumptions than Nginx about what you're trying to do, so we'll need to provide some baseline configuration information.  Ubuntu systems use the _/etc/init_ directory and and declarative config files within it as upstart settings. So, we'll create a _uwsgi.conf_ file in that directory to allow us to run uWSGI in the background.
 
@@ -390,7 +413,7 @@ If you attempt to run the development server, and the page hangs, double check y
 
 ------------------------------------------------------------------------
 
-##SOME ADDITIONAL TRICKS THAT MIGHT HELP
+##ADDITIONAL TRICKS THAT MIGHT HELP
 
 Armin Ronacher, the author of Flask, makes some important suggestions for deploying Flask with uWSGI...
 
