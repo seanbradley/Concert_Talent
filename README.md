@@ -86,7 +86,7 @@ Git-Flow is just a term to describe high-level repository operations for Vincent
  * Configure Nginx
  * Configure uWSGI
  * Start the App!
- 
+
  * Additional Tricks That Might Help
  * Acknowledgements
 
@@ -138,19 +138,21 @@ You can also set up AWS CloudFront to serve up your site's JS scripts and static
 
 Get SSH connection info from the EC2 Dashboard of the AWS Management Console...
 
-    EXAMPLE: ssh -i /home/bluewolf/Keypairs/WordpressKeypair.pem ubuntu@107.21.97.86
+    ssh -i /path/to/keypair.pem ubuntu@XXX.XX.XX.XX
 
 
 If you get a message about wrong signature, nuke the existing with...
 
-    EXAMPLE: ssh-keygen -f "/home/bluewolf/.ssh/known_hosts" -R 107.21.97.86
+    ssh-keygen -f "/path/to/keypair.pem" -R XXX.XX.XX.XX
+    
+...where XXX is the IP address of your EC2 instance, which can be retrieved from the AWS Management Console after you create the instance.
     
 
 ###Update Your Instance / Install Dependencies
 
     sudo apt-get update
 
-Now is the time to install some dependencies.  Note: if you're running a plain AWS Linux AMI, you'd have to install these dependencies first...
+Now is the time to install some dependencies.  Note: if you're running a plain AWS Linux AMI, you'd have to install some dependencies like these first...
 
     sudo apt-get install gcc autoconf libevent-dev libxml2-dev  libssl-dev libpcre++-dev libbz2-dev libcurl4-openssl-dev libgmp3-dev libmysql++-dev libmcrypt-dev
 
@@ -168,7 +170,6 @@ I like to put my app's public facing files in /var/www...
     sudo mkdir concert1
     cd /concert1
     
-TODO: Don't use the number one--i.e., "1"--in directory of file names because it's easily confused as the letter "l".
 
 ###Prep for the Virtual Environment and Install Flask
 
@@ -189,6 +190,7 @@ Use pip to install your remaining dependencies...
     sudo nano .bashrc
 
 Paste and save at the bottom of your .bashrc file...
+
 ------------------------------------------------------------------------
 
 export WORKON_HOME=$HOME/.virtualenvs
@@ -220,6 +222,7 @@ Make sure you're in the /var/www/concert1 directory and create a script to run y
     sudo nano runserver.py
 
 Paste and save the following into the new runserver.py file...
+
 ------------------------------------------------------------------------
 
 from concert1 import app
@@ -241,6 +244,7 @@ Continue by typing these commands in the terminal...
     sudo nano __init__.py
 
 Paste and save into the new __init__.py file...
+
 ------------------------------------------------------------------------
 
 from flask import Flask
@@ -316,6 +320,7 @@ Now we'll create a new, empty default file...
 Paste and save the following into the new default configuration file...
 
 (A tip for Vim users: ctrl-6 at top of file; scroll to bottom; ctrl-k to cut all; copy the following code in this tutorial, then left-click to paste this code into the _default_ configuration file of your _/etc/nginx/sites-available_ directory.)
+
 ------------------------------------------------------------------------
 
 server {
@@ -357,6 +362,7 @@ uWSGI necessarily makes fewer assumptions than Nginx about what you're trying to
  
 
 Paste and save the following into the new configuration file...
+
 ------------------------------------------------------------------------
 
 description "uWSGI"
@@ -375,6 +381,7 @@ Now, just as we did for Nginx, we need to include some additional configuration 
     sudo nano concert1.ini
 
 Paste the following into the .ini file...
+
 ------------------------------------------------------------------------
 
 [uwsgi]
