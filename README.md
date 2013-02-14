@@ -86,6 +86,7 @@ Git-Flow is just a term to describe high-level repository operations for Vincent
  * Configure Nginx
  * Configure uWSGI
  * Start the App!
+ * Stopping the App / Seeing Changes
  * Additional Tricks That Might Help
  * Acknowledgements
 
@@ -382,7 +383,7 @@ And, again, just as we did for Nginx, enable these settings via a symbolic link 
 
 uwsgi -s /tmp/uwsgi.sock --module myapp --callable app
 
-###Stop The App
+###Stopping The App / Seeing Changes
 
 Stop the app by logging out, then back into shell, and then...
 
