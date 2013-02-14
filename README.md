@@ -86,7 +86,6 @@ Git-Flow is just a term to describe high-level repository operations for Vincent
  * Configure Nginx
  * Configure uWSGI
  * Start the App!
-
  * Additional Tricks That Might Help
  * Acknowledgements
 
