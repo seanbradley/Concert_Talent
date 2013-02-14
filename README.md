@@ -383,6 +383,7 @@ And, again, just as we did for Nginx, enable these settings via a symbolic link 
 
 uwsgi -s /tmp/uwsgi.sock --module myapp --callable app
 
+###Stop The App
 
 Stop the app by logging out, then back into shell, and then...
 
@@ -397,6 +398,8 @@ If you attempt to run the development server with...
     sudo killall nginx
     
 If you attempt to run the development server, and the page hangs, double check your AWS security group settings to be sure port 80 (HTTP) is open.
+
+Running the app in the manner described above is not like running the app on your local machine via the development server.  But: you can _reboot_ or _stop_ your AWS instance via the AWS Management Console. You'll likely have to reboot to see changes you make to the app.  DO NOT accidentally terminate the instance.  It's adviseable that you take a "snapshot" of the app on an attached EBS storage instance prior to stopping or rebooting.
 
 
 ------------------------------------------------------------------------
