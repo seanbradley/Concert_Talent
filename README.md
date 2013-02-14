@@ -191,14 +191,10 @@ Use pip to install your remaining dependencies...
 
 Paste and save at the bottom of your .bashrc file...
 
-------------------------------------------------------------------------
-
-export WORKON_HOME=$HOME/.virtualenvs
-   export PROJECT_HOME=/var/www
-   source /usr/local/bin/virtualenvwrapper.sh
+    export WORKON_HOME=$HOME/.virtualenvs
+       export PROJECT_HOME=/var/www
+       source /usr/local/bin/virtualenvwrapper.sh
    
-------------------------------------------------------------------------
-
 Reinitialize bash...
 
 source .bashrc
@@ -223,15 +219,11 @@ Make sure you're in the /var/www/concert1 directory and create a script to run y
 
 Paste and save the following into the new runserver.py file...
 
-------------------------------------------------------------------------
+    from concert1 import app
 
-from concert1 import app
-
-if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=80)
+    if __name__ == '__main__':
+      app.run(host='0.0.0.0', port=80)
   
-------------------------------------------------------------------------
-
 The if _ __name__ == '__main__' _ part allows us start up the app ourselves rather than through a uWSGI process, and allows us to access the app via the built-in development server.
 
 ###Create a Module to Hold Your App
@@ -245,17 +237,12 @@ Continue by typing these commands in the terminal...
 
 Paste and save into the new __init__.py file...
 
-------------------------------------------------------------------------
+    from flask import Flask
+    app = Flask(__name__)
 
-from flask import Flask
-app = Flask(__name__)
-
-@app.route('/')
-def landing():
-  return 'Hello, world!'
-  
-------------------------------------------------------------------------
-
+    @app.route('/')
+    def landing():
+      return 'Hello, world!'
 
 Deactivate the env prior to proceeding with the following commands...
 
@@ -321,31 +308,29 @@ Paste and save the following into the new default configuration file...
 
 (A tip for Vim users: ctrl-6 at top of file; scroll to bottom; ctrl-k to cut all; copy the following code in this tutorial, then left-click to paste this code into the _default_ configuration file of your _/etc/nginx/sites-available_ directory.)
 
-------------------------------------------------------------------------
 
-server {
-    listen              80;
+    server {
+        listen              80;
 
-    server_name         localhost;
+        server_name         localhost;
 
-    location /static {
-        alias           /var/www/concert1/concert1/static;
+        location /static {
+            alias           /var/www/concert1/concert1/static;
+        }
+
+        location / {
+            include         uwsgi_params;
+            uwsgi_pass      unix:/tmp/concert1.sock;
+            uwsgi_param         UWSGI_PYHOME    /home/ubuntu/.virtualenvs/concert1;
+            uwsgi_param         UWSGI_CHDIR     /var/www/concert1;
+            uwsgi_param         UWSGI_MODULE    concert1;
+            uwsgi_param         UWSGI_CALLABLE  app;
+        }
+
+        error_page          404     /404.html;
+
     }
 
-    location / {
-        include         uwsgi_params;
-        uwsgi_pass      unix:/tmp/concert1.sock;
-        uwsgi_param         UWSGI_PYHOME    /home/ubuntu/.virtualenvs/concert1;
-        uwsgi_param         UWSGI_CHDIR     /var/www/concert1;
-        uwsgi_param         UWSGI_MODULE    concert1;
-        uwsgi_param         UWSGI_CALLABLE  app;
-    }
-
-    error_page          404     /404.html;
-
-}
-
-------------------------------------------------------------------------
 
 TODO: explain what each of the config params does...
 
@@ -363,17 +348,15 @@ uWSGI necessarily makes fewer assumptions than Nginx about what you're trying to
 
 Paste and save the following into the new configuration file...
 
-------------------------------------------------------------------------
 
-description "uWSGI"
-start on runlevel [2345]
-stop on runlevel [06]
+    description "uWSGI"
+    start on runlevel [2345]
+    stop on runlevel [06]
 
-respawn
+    respawn
 
-exec uwsgi --master --processes 4 --die-on-term --uid uwsgi --gid nginx --socket /tmp/concert1.sock --chmod-socket 660 --no-site --vhost --logto /var/log/uwsgi/app/concert1.log
+    exec uwsgi --master --processes 4 --die-on-term --uid uwsgi --gid nginx --socket /tmp/concert1.sock --chmod-socket 660 --no-site --vhost --logto /var/log/uwsgi/app/concert1.log
 
-------------------------------------------------------------------------
 
 Now, just as we did for Nginx, we need to include some additional configuration settings in an _apps-available_ directory for uWSGI, just as we did for Nginx.  We'll place these uWSGI configuration instructions in a _.ini_ file...
 
@@ -382,14 +365,12 @@ Now, just as we did for Nginx, we need to include some additional configuration 
 
 Paste the following into the .ini file...
 
-------------------------------------------------------------------------
 
-[uwsgi]
-plugins=python
-vhost=true
-socket=/tmp/concert1.sock
+    [uwsgi]
+    plugins=python
+    vhost=true
+    socket=/tmp/concert1.sock
 
-------------------------------------------------------------------------
 
 And, again, just as we did for Nginx, enable these settings via a symbolic link to uWSGI's _apps-enabled_ directory...
 
@@ -397,8 +378,8 @@ And, again, just as we did for Nginx, enable these settings via a symbolic link 
 
 ###Start The App!
 
-sudo service uwsgi start
-sudo service nginx start
+    sudo service uwsgi start
+    sudo service nginx start
 
 uwsgi -s /tmp/uwsgi.sock --module myapp --callable app
 
@@ -422,15 +403,13 @@ If you attempt to run the development server, and the page hangs, double check y
 
 ##ADDITIONAL TRICKS THAT MIGHT HELP
 
-Armin Ronacher, the author of Flask, makes some important suggestions for deploying Flask with uWSGI...
+###Other Server Options
 
-http://flask.pocoo.org/docs/deploying/uwsgi/
-
-
-If you're interested in using a different set-up than combining Nginx and uWSGI, you can proxy to a standalone servers written in Python (like Tornado)...
+If you're interested in using a different set-up than combining Nginx and uWSGI, you can proxy to a standalone server written in Python (like Tornado)...
 
 <http://flask.pocoo.org/docs/deploying/wsgi-standalone/>
 
+###Other Operating Systems
 
 For comparison sake, here are some instructions for running Flask on a standard Linux AMI using a YAML uWSGI config file...
 
@@ -440,23 +419,31 @@ For comparison sake, here are some instructions for running Flask on a standard 
 
 <http://blog.iqyax.org/configuring-multiple-flask-sites-with-uwsgi-and-nginx-on-an-amazon-ec2-instance>
 
+###Rapid Deployment
 
 Want to speed up the process?  Check out Jeff Hull's thirty-minute-app, which installs a Flask app on a basic Linux instance by leveraging GitHub, Fabric, and Boto...
 
-https://github.com/jsh2134/thirty-min-app
+<https://github.com/jsh2134/thirty-min-app>
 
 
 And here's another rapid deply option, but using Apache, mod_wsgi, and Fabric by Swaroop C. H....
 
-https://github.com/swaroopch/flask-boilerplate
+<https://github.com/swaroopch/flask-boilerplate>
 
+###Incorporating DevOps Utilities
 
 If you're thinking about incorporating some devops utilities into your setup, checkout Matt Wright's use of Ansible...
 
 <http://mattupstate.github.com/python/devops/2012/08/07/flask-wsgi-application-deployment-with-ubuntu-ansible-nginx-supervisor-and-uwsgi.html>
 
 
-Some uWSGI wisdom...
+###Optimizing uWSGI
+
+Armin Ronacher, the author of Flask, makes some important suggestions for deploying Flask with uWSGI...
+
+<http://flask.pocoo.org/docs/deploying/uwsgi/>
+
+So do these folks...
 
 <http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html>
 
@@ -473,6 +460,7 @@ Location of all virtual envs...
 
     /home/ubuntu/.virtualenvs
 
+###Miscellaneous Helpful Commands
 
 The location of Python packages specific to your app...
 
@@ -505,20 +493,24 @@ List all installed packages...
     pip freeze -l
     
 
-To delete everything in a file using vi...
+To delete everything in a file using Vim...
 
 esc
 :1,$d
 
-...then right-click inside vi to paste from clipboard.
+...then right-click inside Vim to paste from clipboard.
 
 ------------------------------------------------------------------------
 
-TODO:  Adjust this...
+TODO:
 
-You can also use uWSGI as an http server, for testing purposes. If you have a copy of your website checked out in the current directory, you can run
+Explain uWSGI params.
 
-uwsgi --http 127.0.0.1:9090 --pyhome ./env --module application --callable app
+Explain how to use test server...
+
+_You can also use uWSGI as an http server, for testing purposes. If you have a copy of your website checked out in the current directory, you can run_
+
+    uwsgi --http 127.0.0.1:9090 --pyhome ./env --module application --callable app
 
 ------------------------------------------------------------------------
 
@@ -537,5 +529,6 @@ This anonymous author also provides some instruction based on Conrad Kramer's or
 <http://www.collectivedisorder.com/ubuntu>
 
 Finally, Leonids Maslovs has a very good tutorial here...
+
 <http://leonardinius.galeoconsulting.com/2012/09/python-playground-part-2-deploying-flask-app-on-ubuntu-nginx-uwsgi-supervisor-git/>
 
