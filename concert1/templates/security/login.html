@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "_renderField.html" import form_fields %}
+
+{% block head %}
+{{ super() }}
+{% block title %}<title>Concert Talent&mdash;Login</title>{% endblock %}
+{% endblock %}
+
+    {% block topnavbar %}
+    {{ super() }}
+    {% endblock %}
+    
+    {% block topnavlinks %}
+    {{ super() }}
+        <ul class="nav pull-right">
+            <li><a href="/">home</a></li>
+        </ul>
+    {% endblock %}
+
+        {% block showcase_n_strip %}
+        {{ super() }}
+        <section>
+            <div class="showcase">
+                <div class="container">
+                    <div class="row">
+                        <div class="span3 form">
+                            <form action="{{ action }}" method="POST" name="form" style="padding-left: 10px;"
+>
+                                {{ form_fields(form) }}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--/showcase_n_strip-->
+        {% endblock %}y
+
+    {% block footer %}
+    {{ super() }}
+    {% endblock %}
+

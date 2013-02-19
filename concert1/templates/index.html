@@ -1,65 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+{% block title %}<title>Concert Talent&mdash;Home</title>{% endblock %}
+{% endblock %}
+
+    {% block topnavbar %}
+    {{ super() }}
+    {% endblock %}
     
-    <head>
-        <meta charset="utf-8">
-        <title>Concert Talent</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="An app for finding and hiring professional musicians.">
-        <meta name="author" content="">
-        <link rel="stylesheet" href="http://virtuosic.concerttalent.com/css/bootstrap.css">
-        <link rel="stylesheet" href="http://virtuosic.concerttalent.com/css/font-awesome.css">
-        <link rel="stylesheet" href="static/css/theme.css">
-        <link href="http://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet" type="text/css">
-        <!--[if lt IE 9]>
-            <link rel="stylesheet" href="css/font-awesome-ie7.css">
-            <script src="http://virtuosic.concerttalent.com/http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <link rel="shortcut icon" href="favicon.ico">
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-37866809-1']);
-            _gaq.push(['_trackPageview']);
+    {% block topnavlinks %}
+    {{ super() }}
+        {% include "security/_nav.html" %}
+    {% endblock %}
 
-            (function() {
-              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
-    </head>
-
-    <body>
-        
-        <!-- Showcase -->
+        {% block showcase_n_strip %}
+        {{ super() }}
         <div class="showcase">
-            <div class="container">
-                <div class="row">
-                      <div class="span3">
-                        <header class="js-animated">
-                            <h1>CONCERT<br />TALENT</h1>
-                        </header>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <!-- Call to Action Strip -->
         <section class="strip">
             <div class="container">
                 <div class="row">
                     <div class="span12">
-                        <h3>An app for finding and hiring professional musicians.</h3>
-                        <h3>Sign up now for our free private beta release... <a class="btn" href="http://eepurl.com/vbtdX">Sign me up!</i></a></h3>
+                        <ul>
+                            <li><h3>An app for finding and hiring professional musicians.<br/><a class="btn-large" href="http://eepurl.com/vbtdX">Sign Up</a> &nbsp;for our <em>free</em> private beta release.</h3></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </section><!--/showcase_n_strip-->
+        {% endblock %}
 
-        <!-- Page Container -->
-        <div class="container">
-            
-            <!-- Info Row -->
+
+            {% block header %}
+            {{ super() }}
             <div class="row">
                 <div class="span3">
                     <img class="img-rounded" src="http://virtuosic.concerttalent.com/assets/product-4.png" alt="">
@@ -67,156 +42,134 @@
                 <div class="span9">
                     <h3>Built by contractors for contractors...</h3>
                     <p>If you hire or manage professional musicians, Concert Talent was built for you. Concert Talent isn't just a gig referral service, and not merely for self-promotion of bands and singer-songwriters.  Concert Talent is a web-based and mobile app designed for the unique needs of industry professionals who assemble and manage musical ensembles of all types and sizes.  Getting the job done fast, doing more with less, and operating globally is necessary for survival in today's rapidly changing music business.  We're developing new features in response to input from major contractors all across the nation. This app assists you in leading your players while minimizing the administrative overhead that gets between you and the success of your next production.  Sign up as a beta-tester, and help us build a custom-tailored product that makes finding and hiring musicians a joy.</p>
-                    <a href="http://eepurl.com/vbtdX" class="btn">Sign Me Up!</a>
                 </div>
-            </div>
+            </div><!--/header-->
             
             <hr>
+            {% endblock %}
 
-            <!-- Features Row 1-->
-            <div class="row">
-                
-                <div class="span3">
-                    <h4><i class="icon icon-music icon-large"></i> Build bands easily...</h4>
-                    <p>Throw away your spreadsheet.  Forget about endless phone calls, e-mails, and text messages.  Check availability of individual musicians, track replies, communicate gig details, confirm your roster, execute contracts, and distribute sheet music with a few clicks. Concert Talent enables you to support important musical projects with minimal fuss.</p>
+            {% block article_one %}
+            {{ super() }}
+            <article>
+                <div class="row">
+                    <div class="span3 feature">
+                        <h4><i class="icon icon-music icon-large"></i> Build bands easily...</h4>
+                        <p>Throw away your spreadsheet.  Forget about endless phone calls, e-mails, and text messages.  Check availability of individual musicians, track replies, communicate gig details, confirm your roster, execute contracts, and distribute sheet music with a few clicks. Concert Talent enables you to support important musical projects with minimal fuss.</p>
+                    </div>
+                    
+                    <div class="span3 feature">
+                        <h4><i class="icon icon-facebook-sign icon-large"></i> Find real pros fast...</h4>
+                        <p>The freelance music biz is more social than ever, so a reputation for delivering quality talent is important.  When auditioning new talent isn't possible, a recommendation from a trusted friend can make all the difference.  Cut through the hype of press kits and online profiles; find artists your colleagues confirm can get the job done.</p>
+                    </div>
+                    
+                    <div class="span3 feature">
+                        <h4><i class="icon icon-globe icon-large"></i> Book groups worldwide...</h4>
+                        <p>Professional musicians are always on the go.  Whether you need to plug into the circle of first-call talent in a new town, or just save money by contracting players local to the next venue on a national tour, we've got you covered with the tools you need to quickly expand your roster virtually anywhere on the planet.</p>
+                    </div>
+                    
+                    <div class="span3 feature">
+                        <h4><i class="icon icon-money icon-large"></i> Hassle-free paydays...</h4>
+                        <p>Let's face it: collecting 1099 info, stuffing envelopes. mailing checks, and paying union dues is a pain. We're working on features that make taking care of your musicians and reconciling your ledger even easier than hiring them.  You'll never have to say, "It's in the mail" to another colleague again.</p>
+                    </div>
                 </div>
-                
-                <div class="span3">
-                    <h4><i class="icon icon-facebook-sign icon-large"></i> Find real pros fast...</h4>
-                    <p>The freelance music biz is more social than ever, so a reputation for delivering quality talent is important.  When auditioning new talent isn't possible, a recommendation from a trusted friend can make all the difference.  Cut through the hype of press kits and online profiles; find artists your colleagues confirm can get the job done.</p>
-                </div>
-                
-                <div class="span3">
-                    <h4><i class="icon icon-globe icon-large"></i> Book groups worldwide...</h4>
-                    <p>Professional musicians are always on the go.  Whether you need to plug into the circle of first-call talent in a new town, or just save money by contracting players local to the next venue on a national tour, we've got you covered with the tools you need to quickly expand your roster virtually anywhere on the planet.</p>
-                </div>
-                
-                <div class="span3">
-                    <h4><i class="icon icon-money icon-large"></i> Hassle-free paydays...</h4>
-                    <p>Let's face it: collecting 1099 info, stuffing envelopes. mailing checks, and paying union dues is a pain. We're working on features that make taking care of your musicians and reconciling your ledger even easier than hiring them.  You'll never have to say, "It's in the mail" to another colleague again.</p>
-                </div>
-                
-            </div>
+            </article><!--/article_one-->
 
             <hr>
+            {% endblock %}
 
-            <!-- Features Row 2-->
-            <div class="row">
-
-                <div class="span4">
-                    <h3>Convenient</h3>
-                    <div class="well">
-                        <p><i class="icon-quote-left icon-large"></i> Track responses and confirm availability faster than mass e-mails and text messages.</p>
-                        <img src="http://virtuosic.concerttalent.com/assets/woodwinds.png" alt="">
+            {% block article_two %}
+            {{ super() }}
+            <article>
+                <div class="row">
+                    <div class="span4 feature">
+                        <h3>Convenient</h3>
+                        <div class="well">
+                            <p><i class="icon-quote-left icon-large"></i> Track responses and confirm availability faster than mass e-mails and text messages.</p>
+                            <img src="http://virtuosic.concerttalent.com/assets/woodwinds.png" alt="">
+                        </div>
+                    </div>
+                    
+                    <div class="span4 feature">
+                        <h3>Private</h3>
+                        <div class="well">
+                            <p><i class="icon-quote-left icon-large"></i> Keep your lists secure. Share individual contacts easily with who you want, when you want.</p>
+                            <img src="http://virtuosic.concerttalent.com/assets/brass.png" alt="">
+                        </div>
+                    </div>
+                    
+                    <div class="span4 feature">
+                        <h3>Connected</h3>
+                        <div class="well">
+                            <p><i class="icon-quote-left icon-large"></i> Find qualified subs instantly, no matter where the venue is located.</p>
+                            <img src="http://virtuosic.concerttalent.com/assets/percussion.png" alt="">
+                        </div>
                     </div>
                 </div>
-                
-                <div class="span4">
-                    <h3>Private</h3>
-                    <div class="well">
-                        <p><i class="icon-quote-left icon-large"></i> Keep your lists secure. Share individual contacts easily with who you want, when you want.</p>
-                        <img src="http://virtuosic.concerttalent.com/assets/brass.png" alt="">
-                    </div>
-                </div>
-                
-                <div class="span4">
-                    <h3>Connected</h3>
-                    <div class="well">
-                        <p><i class="icon-quote-left icon-large"></i> Find qualified subs instantly, no matter where the venue is located.</p>
-                        <img src="http://virtuosic.concerttalent.com/assets/percussion.png" alt="">
-                    </div>
-                </div>
-                
-            </div>
+            </article><!--/article_two-->
 
             <hr>
-
-            <!-- Contact Row -->
-            <div class="row">
-                
-                <div class="span4">          
-                    <div id="mc_embed_signup">
-                        <form action="http://bravoflix.us2.list-manage.com/subscribe/post?u=0e40975fa3e483eb423fe9e3f&amp;id=bf7b0af2ec" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                            <h4><i class="icon icon-envelope-alt"></i>Sign up for early access!  It's free!</h4>
-                            <br />
-                            <div class="indicates-required"><span class="asterisk">*</span> indicates required field
-                            </div>
-                            <br />
-                            <div class="mc-field-group">
-                                <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
-                            </label>
-                                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-                            </div>
-                            <div class="mc-field-group">
-                                <label for="mce-FNAME">First Name  <span class="asterisk">*</span>
-                            </label>
-                                <input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
-                            </div>
-                            <div class="mc-field-group">
-                                <label for="mce-LNAME">Last Name </label>
-                                <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
-                            </div>
-                            <div class="mc-field-group">
-                                <label for="mce-MMERGE3">Company Name </label>
-                                <input type="text" value="" name="MMERGE3" class="" id="mce-MMERGE3">
-                            </div>
-                            <div id="mce-responses" class="clear">
-                                <div class="response" id="mce-error-response" style="display:none"></div>
-                                <div class="response" id="mce-success-response" style="display:none"></div>
-                            </div>    
-                            <div class="clear"><input type="submit" value="Sign Me Up!" name="subscribe" id="mc-embedded-subscribe" class="btn"></div>
-                        </form>
-                    </div><!-- /.mc_embed_signup-->
+            {% endblock %}
+            
+            {% block article_three %}
+            {{ super() }}
+            <article>
+                <div class="row">
+                    <div class="span4 feature">          
+                        <div id="mc_embed_signup">
+                            <form action="http://bravoflix.us2.list-manage.com/subscribe/post?u=0e40975fa3e483eb423fe9e3f&amp;id=bf7b0af2ec" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                <h4><i class="icon icon-envelope-alt"></i>Sign up for early access!  It's free!</h4>
+                                <br />
+                                <div class="indicates-required"><span class="asterisk">*</span> indicates required field
+                                </div>
+                                <br />
+                                <div class="mc-field-group">
+                                    <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+                                </label>
+                                    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                                </div>
+                                <div class="mc-field-group">
+                                    <label for="mce-FNAME">First Name  <span class="asterisk">*</span>
+                                </label>
+                                    <input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
+                                </div>
+                                <div class="mc-field-group">
+                                    <label for="mce-LNAME">Last Name </label>
+                                    <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+                                </div>
+                                <div class="mc-field-group">
+                                    <label for="mce-MMERGE3">Company Name </label>
+                                    <input type="text" value="" name="MMERGE3" class="" id="mce-MMERGE3">
+                                </div>
+                                <div id="mce-responses" class="clear">
+                                    <div class="response" id="mce-error-response" style="display:none"></div>
+                                    <div class="response" id="mce-success-response" style="display:none"></div>
+                                </div>    
+                                <div class="clear"><input type="submit" value="Sign Up" name="subscribe" id="mc-embedded-subscribe" class="btn"></div>
+                            </form>
+                        </div><!-- /.mc_embed_signup-->
+                    </div>
+                    
+                    <div class="span4 feature">
+                        <h4><i class="icon-qrcode"></i>Or use your phone's QR reader...</h4>
+                        <img class="customer-logo" src="http://eepurl.com/vbtdX.qr.6" alt="">
+                        <br />
+                    </div>
+                    
+                    <div class="span4 feature">
+                        <h4><i class="icon-question-sign"></i>What if I perform but don't contract?</h4>
+                        <p>Concert Talent is an app for professionals who hire musicians and/or who lead ensembles. If you do not hire other players, but are interested in getting on the roster of a  particular contractor&mdash;or interested in connecting with a specific manager or presenter in a given city&mdash;feel free to sign up.  If contractors using the app enable features allowing you to connect with them directly, you'll receive notice.  In the meantime, we'll do our best to help you out and put you in touch with the right people.  Whether you're a contractor or strictly a perfomer, we're here to help make life easier for all musicians!</p>
+                        <br />
+                    </div>
                 </div>
-                
-                <div class="span4">
-                    <h4><i class="icon-qrcode"></i>Or use your phone's QR reader...</h4>
-                    <img class="customer-logo" src="http://eepurl.com/vbtdX.qr.6" alt="">
-                    <br />
-                </div>
-                
-                <div class="span4">
-                    <h4><i class="icon-question-sign"></i>What if I perform but don't contract?</h4>
-                    <p>Concert Talent is an app for professionals who hire musicians and/or who lead ensembles. If you do not hire other players, but are interested in getting on the roster of a  particular contractor&mdash;or interested in connecting with a specific manager or presenter in a given city&mdash;feel free to sign up.  If contractors using the app enable features allowing you to connect with them directly, you'll receive notice.  In the meantime, we'll do our best to help you out and put you in touch with the right people.  Whether you're a contractor or strictly a perfomer, we're here to help make life easier for all musicians!</p>
-                    <br />
-                </div>                
-                
-            </div>
+            </article><!--/article_three-->
             
             <br />
+            {% endblock %}                
 
-        </div><!-- page /.container -->
+    {% block sidebarnav %}
+    {{ super() }}
+    {% endblock %}
 
-        <footer>
-              <div class="container">
-                <div class="row">
-                      <div class="span12">
-                        <p>&copy; 2013 by Concert Talent.  All rights reserved.<br />
-                        Piloted with love by <a href="http://blogblimp.com">BlogBlimp</a></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="http://virtuosic.concerttalent.com/js/jquery-1.8.2.min.js"><\/script>')</script>
-        <script src="http://virtuosic.concerttalent.com/js/bootstrap.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                // fancy animation - fade out header content on page scroll
-                $(window).scroll(function() {
-                    if ($(this).scrollTop() > 10) {
-                      $('.js-animated').stop().animate({opacity: 0}, 200);
-                    }
-                    if ($(this).scrollTop() < 10) {
-                      $('.js-animated').stop().animate({opacity: 1}, 500);
-                    }
-                });
-                //bootstrap tooltip trigger
-                $('[rel="tooltip"]').tooltip();
-            });
-        </script>
-        
-    </body>
-    
-</html>
+    {% block footer %}
+    {{ super() }}
+    {% endblock %}

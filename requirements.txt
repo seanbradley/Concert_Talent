@@ -1,4 +1,4 @@
-Flask==0.8
+Flask
 Flask-Assets==0.7
 Flask-Cache==0.4.0
 Flask-Login==0.1.1
@@ -12,4 +12,18 @@ Jinja2==2.6
 SQLAlchemy==0.7.6
 WTForms==1.0.1
 Werkzeug==0.8.3
+argparse==1.2.1
+blinker==1.2
+cssmin==0.1.4
+lamson==1.1
+lockfile==0.9.1
+mock==0.8.0
+nose==1.1.2
+passlib==1.5.3
+python-daemon==1.6
+python-memcached==1.48
+unittest2==0.5.1
+webassets==0.7
 
+#See http://stackoverflow.com/questions/7446187/no-module-named-pkg-resources
+#distribute==0.6.19

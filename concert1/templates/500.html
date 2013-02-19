@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+<head>
+{% block head %}
+{{ super() }}
+{% block title %}<title>500 Error</title>{% endblock %}
+{% endblock %}
+</head>
+
+
+<body>
+
+
+    {% block topnavbar %}
+    {{ super() }}
+
+    {% endblock %}
+
+    <div class="container-fluid">
+
+    <nav>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+
+          <a class="brand" href="/">Sunrider International</a>
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="content">Content</a></li>
+              <li><a href="users">Users</a></li>
+            </ul>
+            <ul class="nav" style="float:right">
+               <div class=metanav style="background-color:#333;padding-top:10px;font-size:100%;font:inherit;">
+                   {% if current_user.is_authenticated() %}
+                       <span style="color:#999999">Welcome, {{ current_user.name }} | <a href="{{ url_for('logout') }}">log out</a></span>
+                   {% else %}
+                       <span style="color:#999999">You are not logged in | <a href="{{ url_for('login') }}">log in</a></span>
+                   {% endif %}
+               </div>
+            </ul>
+          </div><!--/.nav-collapse -->
+
+          <div class="nav">
+             <ul class="btn-toolbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <li class="btn-navbar btn-inverse"><a href="admin_only">Register or Login</a></li>
+                  <li class="btn-navbar btn-inverse"><a href="contact">Users</a></li>
+                  <li class="btn-navbar btn-inverse"><a href="blog">Content</a></li>
+                  <li class="btn-navbar btn-inverse"><a href="/">Home</a></li>
+              </ul>
+          </div>
+
+        </div><!--/.container fluid -->
+      </div><!--/.navbar-inner -->
+    </div><!--/.navbar navbar-fixed-top -->
+
+
+    {% block article_one %}
+	{{ super() }}
+    <div class="hero-unit">
+        <h3>The server wishes to extend you its sincerest apology.  It's having a hard time answering your request.</h3>
+        <details>
+            <div style="text-align: center">
+                <img src="/static/img/merovingian.jpg" width="300" />
+            </div>
+            <h3>"What is the reason? Soon the why and the reason are gone and all that matters is the feeling. This is the nature of the universe. We struggle against it, we fight to deny it; but it is of course a lie. Beneath our poised appearance we are completely out of control."</h3>
+        </details>
+     </div>
+	{% endblock %}
+
+	{% block sidebarnav %}
+	{{ super() }}
+        <ul class="nav nav-list">
+            <li class="nav-header">LINKS</li>
+            <li><a href="/home">Home</li>
+            <li><a href="http://www.sunrider.com/Eng/WebForm/Company/Company.aspx">Company Overview</li>
+            <li><a href="http://shop.sunrider.com/countrymap_new.asp">Product Catalogue</li>
+            <br />
+            <li class="nav-header">ADDITIONAL LINKS</li>
+            <li><a href="http://abo.sunrider.com/WebForm/SelectLocationLanguage.aspx">Find Stores</a></li>
+            <li><a href="http://www.sunrider.com/Eng/WebForm/News/WorldNews.aspx">News</a></li>
+            <li><a href="http://www.sunrider.com/Eng/WebForm/Goodworks/GoodWorks.aspx">Global Outreach</a></li>
+            <li><a href="http://business.sunrider.com/CountryMapJoin.asp">Partner with us!</a></li>
+        </ul>
+	{% endblock %}
+
+    <footer>
+      <div id="footer">
+          {% block footer %}
+              <p><small>&copy; 2012 by Sunrider International. All rights reserved.</small></p><br />
+          {% endblock %}
+      </div>
+    </footer>
