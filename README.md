@@ -3,7 +3,7 @@
 
 ##ABOUT THE APP
 
-Concert Talent is an app that helps connect professional musicians and the people who hire them.  More than merely another platform for bands and/or singer-songwriters to promote themselves via a self-aggrandizing profile, Concert Talent aims to serve the unique needs of industry professionals who manage studio, session, and touring players--i.e., artists who customarily work in ad-hoc ensembles assembled for a specific purpose. The app is presently in pre-release alpha mode, and several features are planned for development pending traction from additional early adopters.
+Concert Talent is an app that helps connect professional musicians and the people who hire them.  More than merely another platform for bands and/or singer-songwriters to promote themselves via a self-aggrandizing profile, Concert Talent aims to serve the unique needs of industry professionals who manage studio, session, and touring players--i.e., freelancing artists who customarily work in ad-hoc ensembles assembled for a specific purpose. This includes executives who hire for TV and film scoring sessions in LA, London, Prague and elsewhere, touring productions for major label headlining artists and Broadway shows, local record and demo dates, and more.  The app is presently in a pre-release alpha mode / test phase, and several features are planned for development pending further market validation and additional traction from early adopters.
 
 ------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ However, please note, the Concert Talent name and logo, all original artwork, an
 
 ##TO DO
 
-This is a pre-alpha release.  User authentication / authorization, and profiles incorporating geo-location data in preparaton for an ensemble builder widget are in development.
+This is a pre-alpha release.  Additional Facebook integration, user authentication / authorization, and profiles incorporating geo-location data in preparaton for an ensemble builder widget are in development.
 
 ------------------------------------------------------------------------
 
