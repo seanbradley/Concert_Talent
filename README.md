@@ -3,7 +3,7 @@
 
 ##ABOUT THE APP
 
-Concert Talent is an app that helps connect professional musicians and the people who hire them.  More than merely another platform for bands and/or singer-songwriters to promote themselves via a self-aggrandizing profile, Concert Talent aims to serve the unique needs of industry professionals who manage studio, session, and touring players who customarily work in ad-hoc ensembles assembled for a specific purpose. The app is presently in pre-release alpha mode, and several features are planned for development pending traction from additional early adopters.
+Concert Talent is an app that helps connect professional musicians and the people who hire them.  More than merely another platform for bands and/or singer-songwriters to promote themselves via a self-aggrandizing profile, Concert Talent aims to serve the unique needs of industry professionals who manage studio, session, and touring players--i.e., artists who customarily work in ad-hoc ensembles assembled for a specific purpose. The app is presently in pre-release alpha mode, and several features are planned for development pending traction from additional early adopters.
 
 ------------------------------------------------------------------------
 
