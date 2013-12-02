@@ -8,10 +8,10 @@
     {% block topnavbar %}
     {{ super() }}
     {% endblock %}
-    
+
     {% block topnavlinks %}
     {{ super() }}
-        {% include "security/_nav.html" %}
+        {# include "security/_nav.html" #}
     {% endblock %}
 
         {% block showcase_n_strip %}
@@ -44,7 +44,7 @@
                     <p>If you perform with or manage a professional music ensemble, Concert Talent was built for you. We're developing new features in response to input from major contractors and performers all across the nation. This app assists you in leading your players while minimizing the administrative overhead that gets between you and the success of your next production.  Connect with other contractors and A-list players in cities around the globe. Sign up as a beta-tester, and help us build a custom-tailored app that makes finding and hiring musicians a joy.</p>
                 </div>
             </div><!--/header-->
-            
+
             <hr>
             {% endblock %}
 
@@ -56,17 +56,17 @@
                         <h4><i class="icon icon-music icon-large"></i> Build bands easily...</h4>
                         <p>Throw away your spreadsheet.  Forget about endless phone calls, e-mails, and text messages.  Check availability of individual musicians, track replies, communicate gig details, confirm your roster, execute contracts, and distribute sheet music with a few clicks. Concert Talent enables you to support important musical projects with minimal fuss.</p>
                     </div>
-                    
+
                     <div class="span3 feature">
                         <h4><i class="icon icon-facebook-sign icon-large"></i> Find real pros fast...</h4>
                         <p>The freelance music biz is more social than ever, so a reputation for delivering quality talent is important.  When auditioning new talent isn't possible, a recommendation from a trusted friend can make all the difference.  Cut through the hype of press kits and online profiles; find artists your colleagues confirm can get the job done.</p>
                     </div>
-                    
+
                     <div class="span3 feature">
                         <h4><i class="icon icon-globe icon-large"></i> Book groups worldwide...</h4>
                         <p>Professional musicians are always on the go.  Whether you need to plug into the circle of first-call talent in a new town, or just save money by contracting players local to the next venue on a national tour, we've got you covered with the tools you need to quickly expand your roster virtually anywhere on the planet.</p>
                     </div>
-                    
+
                     <div class="span3 feature">
                         <h4><i class="icon icon-money icon-large"></i> Hassle-free paydays...</h4>
                         <p>Let's face it: collecting 1099 info, stuffing envelopes. mailing checks, and paying union dues is a pain. We're working on features that make taking care of your musicians and reconciling your ledger even easier than hiring them.  You'll never have to say, "It's in the mail" to another colleague again.</p>
@@ -88,7 +88,7 @@
                             <img src="http://virtuosic.concerttalent.com/assets/woodwinds.png" alt="">
                         </div>
                     </div>
-                    
+
                     <div class="span4 feature">
                         <h3>Private</h3>
                         <div class="well">
@@ -96,7 +96,7 @@
                             <img src="http://virtuosic.concerttalent.com/assets/brass.png" alt="">
                         </div>
                     </div>
-                    
+
                     <div class="span4 feature">
                         <h3>Connected</h3>
                         <div class="well">
@@ -109,12 +109,12 @@
 
             <hr>
             {% endblock %}
-            
+
             {% block article_three %}
             {{ super() }}
             <article>
                 <div class="row">
-                    <div class="span4 feature">          
+                    <div class="span4 feature">
                         <div id="mc_embed_signup">
                             <form action="http://bravoflix.us2.list-manage.com/subscribe/post?u=0e40975fa3e483eb423fe9e3f&amp;id=bf7b0af2ec" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                                 <h4><i class="icon icon-envelope-alt"></i>Sign up for early access!  It's free!</h4>
@@ -143,18 +143,18 @@
                                 <div id="mce-responses" class="clear">
                                     <div class="response" id="mce-error-response" style="display:none"></div>
                                     <div class="response" id="mce-success-response" style="display:none"></div>
-                                </div>    
+                                </div>
                                 <div class="clear"><input type="submit" value="Sign Up" name="subscribe" id="mc-embedded-subscribe" class="btn"></div>
                             </form>
                         </div><!-- /.mc_embed_signup-->
                     </div>
-                    
+
                     <div class="span4 feature">
                         <h4><i class="icon-qrcode"></i>Or use your phone's QR reader...</h4>
                         <img class="customer-logo" src="http://eepurl.com/vbtdX.qr.6" alt="">
                         <br />
                     </div>
-                    
+
                     <div class="span4 feature">
                         <h4><i class="icon-question-sign"></i>What if I perform but don't contract?</h4>
                         <p>Concert Talent is an app for professionals who hire musicians and/or who lead ensembles. If you do not hire other players, but are interested in getting on the roster of a  particular contractor&mdash;or interested in connecting with a specific manager or presenter in a given city&mdash;feel free to sign up.  If contractors using the app enable features allowing you to connect with them directly, you'll receive notice.  In the meantime, we'll do our best to help you out and put you in touch with the right people.  Whether you're a contractor or strictly a perfomer, we're here to help make life easier for all musicians!</p>
@@ -162,9 +162,9 @@
                     </div>
                 </div>
             </article><!--/article_three-->
-            
+
             <br />
-            {% endblock %}                
+            {% endblock %}
 
     {% block sidebarnav %}
     {{ super() }}
