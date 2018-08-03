@@ -3,7 +3,13 @@
 
 ## ABOUT THE APP
 
-Concert Talent is like LinkedIn meets Klout for freelance musicians and the people who hire them.  More than merely another platform for garage bands and/or singer-songwriters to promote themselves via assorted media embeds and self-aggrandizing profile blurbs, Concert Talent aims to serve the unique needs of industry professionals who manage studio, session, and touring players--i.e., artists who customarily work at a relatively high level in the industry and in ad-hoc ensembles assembled for a specific purpose. The app includes features that facilitate the work of managing executives and ensemble leaders who hire for: TV and film scoring sessions (a global industry--Los Angeles, Seattle, London, Prague and elsewhere); productions touring worldwide for major label headlining artists and Broadway shows; local presenters of any sort of concert series; labels and producers organizing local recording dates, and more.  The app is presently in a pre-release alpha mode / test phase, and several features are planned for development pending further market validation and additional traction from early adopters.
+Concert Talent is like LinkedIn meets Klout for freelance musicians and the people who hire them.  
+
+More than merely another platform for garage bands and/or singer-songwriters to promote themselves via assorted media embeds and self-aggrandizing profile blurbs, Concert Talent aims to serve the unique needs of industry professionals who manage studio, session, and touring players--i.e., artists who customarily work at a relatively high level in the industry and in ad-hoc ensembles assembled for a specific purpose. 
+
+The app includes features that facilitate the work of managing executives and ensemble leaders who hire for: TV and film scoring sessions (a global industry--Los Angeles, Seattle, London, Prague and elsewhere); productions touring worldwide for major label headlining artists and Broadway shows; local presenters of any sort of concert series; labels and producers organizing local recording dates, and more.  
+
+The app is presently in a pre-release alpha mode / test phase, and several features are planned for development pending further market validation and additional traction from early adopters.
 
 ------------------------------------------------------------------------
 
